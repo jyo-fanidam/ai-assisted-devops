@@ -10,7 +10,7 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 model = genai.GenerativeModel('gemini-1.5-pro')
 
 PROMPT = """
-Generate an ideal Dockerfile for {language} with best practices. Do not provide any description
+Generate an ideal Dockerfile for {language} with best practices along with CI/CD pipelinefor github and README.md. Do not provide any description
 Include:
 - Base image
 - Installing dependencies
