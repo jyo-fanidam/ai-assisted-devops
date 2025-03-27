@@ -1,10 +1,12 @@
 import google.generativeai as genai
 import os
+from dotenv import load_dotenv
 
-os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY")
 
-# configure the gemini model
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))    
+# Load environment variables from the .env file
+load_dotenv()
+
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 model = genai.GenerativeModel('gemini-1.5-pro')
 
 PROMPT = """
@@ -15,15 +17,26 @@ Include:
 - Setting working directory
 - Adding source code
 - Running the application
+- 2 staged builds
+- Multi-arch support
+- Exposing ports
+- Environment variables
+- Health check
+- Using COPY instead of ADD
+- Using ARG for build-time variables
+- Using ENTRYPOINT instead of CMD
+- Create a CI/CD pipeline
+- Use a non-root user
+- create a new repository
 """
+
 def generate_dockerfile(language):
     response = model.generate_content(PROMPT.format(language=language))
-    return response.text
+    return response.text  # Access the generated text
 
 if __name__ == "__main__":
-    language = input("Enter the language: ")    
-    try:
-        dockerfile = generate_dockerfile(language)
-        print(dockerfile)
-    except Exception as e:
-        print(f"An error occurred: {e}")
+    language = input("Enter the language: ")
+    dockerfile = generate_dockerfile(language)
+    print("\nGenerated Dockerfile:\n")
+    print(dockerfile)
+ 
