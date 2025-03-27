@@ -57,6 +57,7 @@ pip3 install -r requirements.txt
 
 ### Run the Application
 ```bash
+cd local-llms-ollama
 python3 generate_dockerfile.py
 ```
 
@@ -70,10 +71,11 @@ python3 generate_dockerfile.py
 ## Example Usage
 
 ```bash
+cd hosted-llm-gemini
 python3 generate_dockerfile.py
 ```
 
-- **Input:** Enter programming language (e.g., `python`).
+- **Input:** Enter the programming language (e.g., `python`).
 - **Output:** The generated Dockerfile will be displayed.
 
 ## Troubleshooting
@@ -81,3 +83,4 @@ python3 generate_dockerfile.py
 - Ensure the Ollama service is running before executing the script.
 - Verify the correct model is downloaded.
 - Adapt best practices for other programming languages as needed.
+- Update your Google API key in the `.env` file locally for security.
